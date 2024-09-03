@@ -1,4 +1,4 @@
-# ~`Parcol` Parse ANSI Colors~
+# `Parcol` Parse ANSI Colors
 Parcol is a utility for parsing all [ANSI colors](https://npmjs.com/package/ansi-colors) methods in a string.
 
 ## Table of Contents
@@ -21,7 +21,7 @@ Parcol is a utility for parsing all [ANSI colors](https://npmjs.com/package/ansi
 ## Syntax
 `~(color_key) (your_text)~`
 
-We refer to the text enclosed between `~ ~` as parcol. Instead of the color key in the syntax above, you can find a table of color key methods converted to Parcol codes below [ANSI colors](https://npmjs.com/package/ansi-colors).
+We refer to the text enclosed between `~ ~` as parcol. Instead of the color key in the syntax above, you can find a table of color key methods converted to [Parcol keys](#all-color-keys) below `ANSI colors`.
 
 The simplest usage example is `bl` for blue. So when you type `~bl ...~`, Parcol will convert your code to `c.blue("...")`.
 
