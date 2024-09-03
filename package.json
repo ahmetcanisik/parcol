@@ -1,12 +1,15 @@
 {
   "name": "parcol",
   "version": "0.0.1",
-  "description": "parse color in text",
+  "description": "Parcol is a utility for parsing all ANSI colors methods in a string.",
   "main": "index.js",
   "repository": "https://github.com/ahmetcanisik/parcol.git",
   "author": "ahmetcanisik",
   "license": "MIT",
   "peerDependencies": {
-	  "ansi-colors": "^1"
+    "ansi-colors": "^4.1.3"
+  },
+  "devDependencies": {
+    "ansi-colors": "^4.1.3"
   }
 }

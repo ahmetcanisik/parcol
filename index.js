@@ -7,7 +7,7 @@
  * 
  * usages and examples
  * @usage                   = ~(code) (your_text)~;
- * @example_usage           = ~c This message will appear in cyan color.~
+ * @example                 = ~c This message will appear in cyan color.~
  * 
  * All ansi-colors color codes are available in the list below.
  * @color bc                = black
@@ -123,7 +123,14 @@ class Parcol {
         { id: "u", method: (m) => c.underline(m) },
     ];
 
-    parse_in_text(message) {
+    /**
+     * 
+     * @param       {string} message 
+     * @mean        pit = parse in text.
+     * @description parse in text method. It parses the parcol from the value given in the message parameter.
+     * @returns     string
+     */
+    pit(message) {
         if (!message) {
             return message;
         }
