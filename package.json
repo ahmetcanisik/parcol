@@ -1,0 +1,12 @@
+{
+  "name": "parcol",
+  "version": "0.0.1",
+  "description": "parse color in text",
+  "main": "index.js",
+  "repository": "https://github.com/ahmetcanisik/parcol.git",
+  "author": "ahmetcanisik",
+  "license": "MIT",
+  "peerDependencies": {
+	  "ansi-colors": "^1"
+  }
+}
