@@ -1,10 +1,4 @@
 /**
- * @name parcol
- * @version 0.0.1
- * @description ansi-colors parser.
- * @author ahmetcanisik
- * @license MIT
- * 
  * usages and examples
  * @usage                   = ~(code) (your_text)~;
  * @example                 = ~c This message will appear in cyan color.~
