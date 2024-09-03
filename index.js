@@ -158,6 +158,6 @@ class Parcol {
     }
 }
 
-module.exports = Parcol, {
+module.exports = {
     parcol: new Parcol()
 };
