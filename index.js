@@ -50,12 +50,15 @@
  * @mod it                  = italic
  * @mod rs                  = reset
  * @mod u                   = underline
+ * @mod l                   = link
  * 
  */
 
-
 // require https://npmjs.com/package/ansi-colors
 const c = require("ansi-colors");
+
+// require https://npmjs.com/package/hyperlinker
+const hyperlinker = require("hyperlinker");
 
 class Parcol {
     #colors = [
@@ -115,43 +118,49 @@ class Parcol {
         { id: "it", method: (m) => c.italic(m) },
         { id: "rs", method: (m) => c.reset(m) },
         { id: "u", method: (m) => c.underline(m) },
+        { id: "l", method: (text) => {
+            const [hyperlink, link] = text.split('->').map(part => part.trim());
+            return hyperlinker(hyperlink, link);
+        }}
     ];
 
     /**
-     * 
-     * @param       {string} message 
-     * @mean        pit = parse in text.
-     * @description parse in text method. It parses the parcol from the value given in the message parameter.
-     * @returns     string
+     * @param {string} message - The message to parse and apply formatting.
+     * @returns {string} - The formatted message.
      */
     pit(message) {
         if (!message) {
             return message;
         }
 
-        // Separate mode and message with RegExp
+        // Regular expression to match the formatting pattern
         const pattern = /~([^~]+?)\s(.*?)~/g;
         let result = message;
         let match;
 
-        // Find and process each mode message
+        // Find and process each format message
         while ((match = pattern.exec(message)) !== null) {
             const [fullMatch, mods, text] = match;
 
-            // Separate modes with commas and find applications
+            // Separate modes with commas and find corresponding methods
             const modList = mods.split(',').map(mod => mod.trim());
-            const modMethods = [...this.#colors, ...this.#bright_colors, ...this.#bg_colors, ...this.#bg_bright_colors, ...this.#mods]
-                .filter(item => modList.includes(item.id))
-                .map(item => item.method);
+            const modMethods = [
+                ...this.#colors,
+                ...this.#bright_colors,
+                ...this.#bg_colors,
+                ...this.#bg_bright_colors,
+                ...this.#mods
+            ].filter(item => modList.includes(item.id))
+             .map(item => item.method);
 
-            // Apply text to modes
-            let coloredText = text;
+            // Apply methods to text
+            let processedText = text;
             for (const modMethod of modMethods) {
-                coloredText = modMethod(coloredText);
+                processedText = modMethod(processedText);
             }
 
-            // Ultimately remove the mods and just return the colorized text
-            result = result.replace(fullMatch, coloredText);
+            // Replace the original match with the processed text
+            result = result.replace(fullMatch, processedText);
         }
 
         return result;
@@ -159,5 +168,6 @@ class Parcol {
 }
 
 module.exports = {
-    parcol: new Parcol()
+    parcol: new Parcol(),
+    Parcol
 };
