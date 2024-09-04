@@ -148,6 +148,7 @@ You can find all Parcol color keys below. The tables consist of two columns: the
 | `it`   | italic      |
 | `rs`   | reset       |
 | `u`    | underline   |
+| `l`    | link        |
 
 <br>
 
