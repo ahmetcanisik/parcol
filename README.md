@@ -74,7 +74,7 @@ To apply more than one method, separate them with a comma (,). Here is an exampl
 const { parcol } = require("parcol");
 
 // It sets the text to both blue and dim (bl,d).
-parcol.pit("this is a ~bl,d blue~ message");
+parcol.pit("this is a ~bl,d blue~ message", "and this is ~d dim~ text");
 ```
 
 ## All Color Keys

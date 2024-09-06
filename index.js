@@ -131,10 +131,12 @@ class Parcol {
      * @param {string} message - The message to parse and apply formatting.
      * @returns {string} - The formatted message.
      */
-    pit(message) {
-        if (!message) {
-            return message;
+    pit(...messages) {
+        if (!messages) {
+            return messages[0];
         }
+
+        const message = messages.join(" ");
 
         // Regular expression to match the formatting pattern
         const pattern = /~([^~]+?)\s(.*?)~/g;
