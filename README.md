@@ -1,5 +1,5 @@
 # `Parcol` Parse ANSI Colors
-Parcol is a utility for parsing all [ANSI colors](https://npmjs.com/package/ansi-colors) methods in a string.
+Parcol is a utility for parsing all [Chalk](https://npmjs.com/package/chalk) methods in a string.
 
 ## Table of Contents
 - [Syntax](#syntax)
@@ -82,12 +82,11 @@ parcol.pit("this is a ~bl,d blue~ message", "and this is ~d dim~ text");
 You can find all Parcol color keys below. The tables consist of two columns: the first column lists the color keys available in Parcol, and the second column shows the corresponding method names in ANSI colors.
 
 ### Basic Colors
-| parcol | ansi-colors |
+| parcol | ansi colors |
 |--------|-------------|
 | `bc`   | black       |
 | `bl`   | blue        |
 | `c`    | cyan        |
-| `gy`   | gray        |
 | `g`    | green       |
 | `m`    | magenta     |
 | `r`    | red         |
@@ -97,7 +96,7 @@ You can find all Parcol color keys below. The tables consist of two columns: the
 <br>
 
 ### Bright (Hightlight) Colors
-| parcol | ansi-colors  |
+| parcol | ansi colors  |
 |--------|--------------|
 | `bcb`  | blackBright  |
 | `blb`  | blueBright   |
@@ -111,7 +110,7 @@ You can find all Parcol color keys below. The tables consist of two columns: the
 <br>
 
 ### Background Colors
-| parcol | ansi-colors |
+| parcol | ansi colors |
 |--------|-------------|
 | `bgbc` | bgBlack     |
 | `bgbl` | bgBlue      |
@@ -125,7 +124,7 @@ You can find all Parcol color keys below. The tables consist of two columns: the
 <br>
 
 ### Bright Background Colors
-| parcol | ansi-colors    |
+| parcol | ansi colors    |
 |--------|----------------|
 | `bbcb` | bgBlackBright  |
 | `bblb` | bgBlueBright   |
@@ -139,16 +138,26 @@ You can find all Parcol color keys below. The tables consist of two columns: the
 <br>
 
 ### Modifiers
-| parcol | ansi-colors |
-|--------|-------------|
-| `b`    | bold        |
-| `d`    | dim         |
-| `h`    | hidden      |
-| `in`   | inverse     |
-| `it`   | italic      |
-| `rs`   | reset       |
-| `u`    | underline   |
-| `l`    | link        |
+| parcol | ansi colors    |
+|--------|----------------|
+| `b`    | bold           |
+| `d`    | dim            |
+| `h`    | hidden         |
+| `in`   | inverse        |
+| `it`   | italic         |
+| `l`    | terminalLink   |
+| `o`    | overline       |
+| `rs`   | reset          |
+| `st`   | strikethrough  |
+| `u`    | underline      |
+| `v`    | visible        |
+| `hex`  | hex            |
+| `rgb`  | rgb            |
+| `ans`  | ansi256        |
+| `bgans`| bgAnsi256      |
+| `bghex`| hex background |
+| `bgrgb`| rgb background |
+
 <br>
 
 LICENSE : [MIT](LICENSE)

@@ -1,178 +1,170 @@
-/**
- * usages and examples
- * @usage                   = ~(code) (your_text)~;
- * @example                 = ~c This message will appear in cyan color.~
- * 
- * All ansi-colors color codes are available in the list below.
- * @color bc                = black
- * @color bl                = blue
- * @color c                 = cyan
- * @color gy                = gray
- * @color g                 = green
- * @color m                 = magenta
- * @color r                 = red
- * @color y                 = yellow
- * @color w                 = white
- *  
- * @bright_color bcb        = blackBrigt
- * @bright_color blb        = blueBright
- * @bright_color cb         = cyanBright
- * @bright_color gb         = greenBright
- * @bright_color mb         = magentaBright
- * @bright_color rb         = redBright
- * @bright_color yb         = yellowBright
- * @bright_color wb         = whiteBright
- * 
- * @bg_color bgbc           = bgBlack
- * @bg_color bgbl           = bgBlue
- * @bg_color bgc            = bgCyan
- * @bg_color bgg            = bgGreen
- * @bg_color bgm            = bgMagenta
- * @bg_color bgr            = bgRed
- * @bg_color bgy            = bgYellow
- * @bg_color bgw            = bgWhite
- * 
- * 
- * @bright_bg_color bbcb    = bgBlackBright
- * @bright_bg_color bblb    = bgBlueBright
- * @bright_bg_color bcb     = bgCyanBright
- * @bright_bg_color bgb     = bgGreenBright
- * @bright_bg_color bmb     = bgMagentaBright
- * @bright_bg_color brb     = bgRedBright
- * @bright_bg_color byb     = bgYellowBright
- * @bright_bg_color bwb     = bgWhiteBright
- * 
- * 
- * @mod b                   = bold
- * @mod d                   = dim
- * @mod h                   = hidden
- * @mod in                  = inverse
- * @mod it                  = italic
- * @mod rs                  = reset
- * @mod u                   = underline
- * 
- * @mod l                   = hyperlink
- */
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _Parcol_key;
+import chalk from "chalk";
+// @ts-ignore: Show this old man some respect!
+import hyperlinker from 'hyperlinker';
+/* type RGBType = Array<number>;
 
-// require https://npmjs.com/package/ansi-colors
-const c = require("ansi-colors");
+Functions to handle colors
+const getRGB = (m: MessageType): RGBType => {
+    const s: Array<string> = m.split(",");
+    if (Array.isArray(s) && s.length === 3) {
+        const [r, g, b]: RGBType = s.map(mes => Number(mes));
+        return [r, g, b];
+    }
+    return [0, 0, 0]; // Default to black if invalid
+};
 
-// require https://npmjs.com/package/hyperlinker
-const hyperlinker = require("hyperlinker");
-
-// Colors
+const isAnsi256 = (m: MessageType): number => {
+    const num: number = Number(m);
+    if (typeof num === "number" && num <= 256 && num >= 0) {
+        return num;
+    }
+    return 0; // Default to 0 if invalid
+};*/
+// Colors and formatting
 const COLORS = [
-    { id: "bc", method: (m) => c.black(m) },
-    { id: "bl", method: (m) => c.blue(m) },
-    { id: "c", method: (m) => c.cyan(m) },
-    { id: "gy", method: (m) => c.gray(m) },
-    { id: "g", method: (m) => c.green(m) },
-    { id: "m", method: (m) => c.magenta(m) },
-    { id: "r", method: (m) => c.red(m) },
-    { id: "y", method: (m) => c.yellow(m) },
-    { id: "w", method: (m) => c.white(m) },
-]
-
-// Bright Colors
+    { id: "bc", method: (m) => chalk.black(m) },
+    { id: "bl", method: (m) => chalk.blue(m) },
+    { id: "c", method: (m) => chalk.cyan(m) },
+    { id: "g", method: (m) => chalk.green(m) },
+    { id: "m", method: (m) => chalk.magenta(m) },
+    { id: "r", method: (m) => chalk.red(m) },
+    { id: "y", method: (m) => chalk.yellow(m) },
+    { id: "w", method: (m) => chalk.white(m) },
+];
 const BRIGHT_COLORS = [
-    { id: "bcb", method: (m) => c.blackBright(m) },
-    { id: "blb", method: (m) => c.blueBright(m) },
-    { id: "cb", method: (m) => c.cyanBright(m) },
-    { id: "gb", method: (m) => c.greenBright(m) },
-    { id: "mb", method: (m) => c.magentaBright(m) },
-    { id: "rb", method: (m) => c.redBright(m) },
-    { id: "yb", method: (m) => c.yellowBright(m) },
-    { id: "wb", method: (m) => c.whiteBright(m) },
+    { id: "bcb", method: (m) => chalk.blackBright(m) },
+    { id: "blb", method: (m) => chalk.blueBright(m) },
+    { id: "cb", method: (m) => chalk.cyanBright(m) },
+    { id: "gb", method: (m) => chalk.greenBright(m) },
+    { id: "mb", method: (m) => chalk.magentaBright(m) },
+    { id: "rb", method: (m) => chalk.redBright(m) },
+    { id: "yb", method: (m) => chalk.yellowBright(m) },
+    { id: "wb", method: (m) => chalk.whiteBright(m) },
 ];
-
-
-// Background colors
 const BG_COLORS = [
-    { id: "bgbc", method: (m) => c.bgBlack(m) },
-    { id: "bgbl", method: (m) => c.bgBlue(m) },
-    { id: "bgc", method: (m) => c.bgCyan(m) },
-    { id: "bgg", method: (m) => c.bgGreen(m) },
-    { id: "bgm", method: (m) => c.bgMagenta(m) },
-    { id: "bgr", method: (m) => c.bgRed(m) },
-    { id: "bgy", method: (m) => c.bgYellow(m) },
-    { id: "bgw", method: (m) => c.bgWhite(m) },
+    { id: "bgbc", method: (m) => chalk.bgBlack(m) },
+    { id: "bgbl", method: (m) => chalk.bgBlue(m) },
+    { id: "bgc", method: (m) => chalk.bgCyan(m) },
+    { id: "bgg", method: (m) => chalk.bgGreen(m) },
+    { id: "bgm", method: (m) => chalk.bgMagenta(m) },
+    { id: "bgr", method: (m) => chalk.bgRed(m) },
+    { id: "bgy", method: (m) => chalk.bgYellow(m) },
+    { id: "bgw", method: (m) => chalk.bgWhite(m) },
 ];
-
-// Bright background colors
 const BG_BRIGHT_COLORS = [
-    { id: "bbcb", method: (m) => c.bgBlackBright(m) },
-    { id: "bblb", method: (m) => c.bgBlueBright(m) },
-    { id: "bcb", method: (m) => c.bgCyanBright(m) },
-    { id: "bgb", method: (m) => c.bgGreenBright(m) },
-    { id: "bmb", method: (m) => c.bgMagentaBright(m) },
-    { id: "brb", method: (m) => c.bgRedBright(m) },
-    { id: "byb", method: (m) => c.bgYellowBright(m) },
-    { id: "bwb", method: (m) => c.bgWhiteBright(m) },
+    { id: "bbcb", method: (m) => chalk.bgBlackBright(m) },
+    { id: "bblb", method: (m) => chalk.bgBlueBright(m) },
+    { id: "bcb", method: (m) => chalk.bgCyanBright(m) },
+    { id: "bgb", method: (m) => chalk.bgGreenBright(m) },
+    { id: "bmb", method: (m) => chalk.bgMagentaBright(m) },
+    { id: "brb", method: (m) => chalk.bgRedBright(m) },
+    { id: "byb", method: (m) => chalk.bgYellowBright(m) },
+    { id: "bwb", method: (m) => chalk.bgWhiteBright(m) },
 ];
-
-
-// Modifiers
 const MODS = [
-    { id: "b", method: (m) => c.bold(m) },
-    { id: "d", method: (m) => c.dim(m) },
-    { id: "h", method: (m) => c.hidden(m) },
-    { id: "in", method: (m) => c.inverse(m) },
-    { id: "it", method: (m) => c.italic(m) },
-    { id: "rs", method: (m) => c.reset(m) },
-    { id: "u", method: (m) => c.underline(m) },
-    { id: "l", method: (text) => {
-        const [hyperlink, link] = text.split('->').map(part => part.trim());
-        return hyperlinker(hyperlink, link);
-    }}
+    { id: "b", method: (m) => chalk.bold(m) },
+    { id: "d", method: (m) => chalk.dim(m) },
+    { id: "h", method: (m) => chalk.hidden(m) },
+    { id: "in", method: (m) => chalk.inverse(m) },
+    { id: "it", method: (m) => chalk.italic(m) },
+    { id: "o", method: (m) => chalk.overline(m) },
+    { id: "rs", method: (m) => chalk.reset(m) },
+    { id: "st", method: (m) => chalk.strikethrough(m) },
+    { id: "u", method: (m) => chalk.underline(m) },
+    { id: "v", method: (m) => chalk.visible(m) },
+    { id: "l", method: (m) => {
+            const [text, link] = m.split('->').map(part => part.trim());
+            return hyperlinker(text, link);
+        } },
+    /*{ id: "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$", method: (m: MessageType) => chalk.hex(m) },
+    { id: "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$", method: (m: MessageType) => chalk.bgHex(m) },
+    { id: "^\\(\\d+\\)$", method: (m: MessageType) => chalk.ansi256(isAnsi256(m)) },
+    { id: "^\\(\\d+\\)$", method: (m: MessageType) => chalk.bgAnsi256(isAnsi256(m)) },
+    { id: "^<http(?:s)?://[^>]+>$", method: (m: MessageType) => {
+        const [text, link] = m.split('->').map(part => part.trim());
+        return hyperlinker(text, link);
+    }},
+    { id: "^\\(\\d+,\\s*\\d+,\\s*\\d+\\)$", method: (m: MessageType) => {
+        const [r, g, b]: RGBType = getRGB(m);
+        return chalk.rgb(r, g, b);
+    }},
+    { id: "^\\(\\d+,\\s*\\d+,\\s*\\d+\\)$", method: (m: MessageType) => {
+        const [r, g, b]: RGBType = getRGB(m);
+        return chalk.bgRgb(r, g, b);
+    }},*/
 ];
-
-class Parcol {
+export class Parcol {
+    constructor(key) {
+        _Parcol_key.set(this, "~");
+        __classPrivateFieldSet(this, _Parcol_key, key, "f");
+    }
     /**
      * @param {string} message - The message to parse and apply formatting.
      * @returns {string} - The formatted message.
      */
     pit(...messages) {
-        if (!messages) {
-            return messages[0];
+        if (!messages || messages.length === 0) {
+            return "";
         }
-
         const message = messages.join(" ");
-
         // Regular expression to match the formatting pattern
-        const pattern = /~([^~]+?)\s(.*?)~/g;
+        const pattern = new RegExp(`\\${__classPrivateFieldGet(this, _Parcol_key, "f")}([^\\${__classPrivateFieldGet(this, _Parcol_key, "f")}]+?)\\s(.*?)\\${__classPrivateFieldGet(this, _Parcol_key, "f")}`, 'g');
         let result = message;
         let match;
-
         // Find and process each format message
         while ((match = pattern.exec(message)) !== null) {
             const [fullMatch, mods, text] = match;
-
             // Separate modes with commas and find corresponding methods
             const modList = mods.split(',').map(mod => mod.trim());
+            // Collect all methods that match either by ID or regex
             const modMethods = [
                 ...COLORS,
                 ...BRIGHT_COLORS,
                 ...BG_COLORS,
                 ...BG_BRIGHT_COLORS,
                 ...MODS
-            ].filter(item => modList.includes(item.id))
-             .map(item => item.method);
-
-            // Apply methods to text
+            ]
+                .map(item => {
+                // Apply regex matching
+                if (item.id.startsWith("^") && item.id.endsWith("$")) {
+                    const regex = new RegExp(item.id);
+                    if (regex.test(text)) {
+                        return item.method;
+                    }
+                }
+                else if (modList.includes(item.id)) {
+                    return item.method;
+                }
+                return null;
+            })
+                .filter(method => method !== null);
+            if (modMethods.length === 0) {
+                console.warn("No matching modification method found. Invalid modes:", modList);
+            }
             let processedText = text;
             for (const modMethod of modMethods) {
-                processedText = modMethod(processedText);
+                if (typeof modMethod === "function") {
+                    // Apply each method in sequence
+                    processedText = modMethod(processedText);
+                }
             }
-
             // Replace the original match with the processed text
             result = result.replace(fullMatch, processedText);
         }
-
         return result;
     }
 }
-
-module.exports = {
-    parcol: new Parcol(),
-    Parcol
-};
+_Parcol_key = new WeakMap();
+export default new Parcol("~");
