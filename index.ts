@@ -4,6 +4,7 @@ import chalk from "chalk";
 import hyperlinker from 'hyperlinker';
 
 type MessageType = string;
+type ColorType = Array<{ id: string, method: (m: MessageType) => void }>;
 /* type RGBType = Array<number>;
 
 Functions to handle colors
@@ -25,7 +26,7 @@ const isAnsi256 = (m: MessageType): number => {
 };*/
 
 // Colors and formatting
-const COLORS = [
+const COLORS: ColorType = [
     { id: "bc", method: (m: MessageType) => chalk.black(m) },
     { id: "bl", method: (m: MessageType) => chalk.blue(m) },
     { id: "c", method: (m: MessageType) => chalk.cyan(m) },
@@ -36,7 +37,7 @@ const COLORS = [
     { id: "w", method: (m: MessageType) => chalk.white(m) },
 ];
 
-const BRIGHT_COLORS = [
+const BRIGHT_COLORS: ColorType = [
     { id: "bcb", method: (m: MessageType) => chalk.blackBright(m) },
     { id: "blb", method: (m: MessageType) => chalk.blueBright(m) },
     { id: "cb", method: (m: MessageType) => chalk.cyanBright(m) },
@@ -47,7 +48,7 @@ const BRIGHT_COLORS = [
     { id: "wb", method: (m: MessageType) => chalk.whiteBright(m) },
 ];
 
-const BG_COLORS = [
+const BG_COLORS: ColorType = [
     { id: "bgbc", method: (m: MessageType) => chalk.bgBlack(m) },
     { id: "bgbl", method: (m: MessageType) => chalk.bgBlue(m) },
     { id: "bgc", method: (m: MessageType) => chalk.bgCyan(m) },
@@ -58,7 +59,7 @@ const BG_COLORS = [
     { id: "bgw", method: (m: MessageType) => chalk.bgWhite(m) },
 ];
 
-const BG_BRIGHT_COLORS = [
+const BG_BRIGHT_COLORS: ColorType = [
     { id: "bbcb", method: (m: MessageType) => chalk.bgBlackBright(m) },
     { id: "bblb", method: (m: MessageType) => chalk.bgBlueBright(m) },
     { id: "bcb", method: (m: MessageType) => chalk.bgCyanBright(m) },
@@ -69,7 +70,7 @@ const BG_BRIGHT_COLORS = [
     { id: "bwb", method: (m: MessageType) => chalk.bgWhiteBright(m) },
 ];
 
-const MODS = [
+const MODS: ColorType = [
     { id: "b", method: (m: MessageType) => chalk.bold(m) },
     { id: "d", method: (m: MessageType) => chalk.dim(m) },
     { id: "h", method: (m: MessageType) => chalk.hidden(m) },
@@ -158,10 +159,12 @@ export class Parcol {
                 console.warn("No matching modification method found. Invalid modes:", modList);
             }            
 
-            let processedText: string = text;
+            let processedText: any = text;
             for (const modMethod of modMethods) {
-                if (typeof modMethod === "function") {
-                    // Apply each method in sequence
+                if (
+                    typeof modMethod === "function" &&
+                    typeof modMethod(processedText) === "string"
+                ) {
                     processedText = modMethod(processedText);
                 }
             }

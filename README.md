@@ -43,7 +43,7 @@ yarn add parcol
 The following code demonstrates how Parcol converts text to specific ANSI colors. It will convert the text "blue" to c.blue("blue"), so the blue text will remain blue while other texts will not be modified.
 
 ```js
-const { parcol } = require("parcol");
+import parcol from "parcol";
 
 const my_text = "this is a ~bl blue~ message";
 
@@ -61,7 +61,7 @@ Below are some usage examples for Parcol.
 It is possible to use Parcol multiple times in a single string expression.
 
 ```js
-const { parcol } = require("parcol");
+import parcol from "parcol";
 
 parcol.pit("~y hi~ ~r red~, my favorite color is ~bl blue~ but I also love ~m purple~");
 ```
@@ -71,7 +71,7 @@ parcol.pit("~y hi~ ~r red~, my favorite color is ~bl blue~ but I also love ~m pu
 To apply more than one method, separate them with a comma (,). Here is an example using bl,d:
 
 ```js
-const { parcol } = require("parcol");
+import parcol from "parcol";
 
 // It sets the text to both blue and dim (bl,d).
 parcol.pit("this is a ~bl,d blue~ message", "and this is ~d dim~ text");
