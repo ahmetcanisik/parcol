@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       should_release: ${{ steps.check.outputs.should_release }}
+      version: ${{ steps.current_version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,7 +41,7 @@ jobs:
           fi
 
   new_release:
-    needs: check_version
+    needs: [check_version]
     if: needs.check_version.outputs.should_release == 'true'
     runs-on: ubuntu-latest
     steps:
@@ -52,6 +53,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: "npm"
 
       - name: Install dependencies
         run: |
@@ -62,10 +64,20 @@ jobs:
         run: pnpm build
         continue-on-error: false
 
+      - name: Create Git Tag
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git tag -a "v${{ needs.check_version.outputs.version }}" -m "Release v${{ needs.check_version.outputs.version }}"
+          git push origin "v${{ needs.check_version.outputs.version }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ needs.check_version.outputs.version }}
           files: |
             dist/**/*
             LICENSE
