@@ -1,6 +1,7 @@
 # `Parcol` - Parse ANSI Colors
 
-[![Unit test for Parcol.js](https://github.com/ahmetcanisik/parcol/actions/workflows/test.yml/badge.svg)](https://github.com/ahmetcanisik/parcol/actions/workflows/test.yml)
+[![tests](https://github.com/ahmetcanisik/parcol/actions/workflows/test.yml/badge.svg)](https://github.com/ahmetcanisik/parcol/actions/workflows/test.yml)
+[![release](https://github.com/ahmetcanisik/parcol/actions/workflows/release.yml/badge.svg)](https://github.com/ahmetcanisik/parcol/actions/workflows/release.yml)
 
 A simple and powerful utility for parsing [Chalk](https://npmjs.com/package/chalk) color methods in strings. Parcol makes it easy to add beautiful colors to your terminal output with a simple syntax.
 

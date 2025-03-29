@@ -1,4 +1,4 @@
-name: Release a Parcol new version to github and npmjs.
+name: Release a new version.
 
 on:
   workflow_run:
