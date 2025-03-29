@@ -79,11 +79,6 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ needs.check_version.outputs.version }}
-          files: |
-            dist/**/*
-            LICENSE
-            README.md
-            package.json
           draft: false
           prerelease: false
           generate_release_notes: true
