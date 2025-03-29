@@ -1,22 +1,26 @@
 {
   "name": "parcol",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "Parcol is a utility for parsing all ANSI colors methods in a string.",
-  "main": "index.js",
-  "repository": "https://github.com/ahmetcanisik/parcol.git",
-  "author": "ahmetcanisik (https://ahmetcanisik.com) <imcanisik@gmail.com>",
   "type": "module",
-  "license": "MIT",
+  "main": "./dist/index.js",
   "scripts": {
-    "test": "tsc && node tests"
+    "prepare": "npm run build",
+    "build": "npm run test && tsc",
+    "try": "npm run build && node .",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "files": [
-    "index.js",
-    "index.d.ts",
-    "package.json",
+    "dist",
+    "LICENSE",
     "README.md",
-    "LICENSE"
+    "package.json"
   ],
+  "license": "MIT",
+  "repository": "https://github.com/ahmetcanisik/parcol.git",
+  "author": "ahmetcanisik (https://ahmetcanisik.com) <imcanisik@gmail.com>",
   "keywords": [
     "256",
     "ansi",
@@ -80,11 +84,9 @@
     "hyperlink",
     "url",
     "escape",
-    "term"
+    "term",
+    "parcol"
   ],
-  "devDependencies": {
-    "typescript": "^5.5.4"
-  },
   "lint": {
     "reflinks": true
   },
@@ -93,8 +95,17 @@
     "terminal-link",
     "typescript"
   ],
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.14",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
   "dependencies": {
-    "chalk": "^5.3.0",
-    "hyperlinker": "^1.0.0"
+    "chalk": "^5.4.1",
+    "terminal-link": "^4.0.0"
   }
 }

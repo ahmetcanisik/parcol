@@ -1,20 +1,24 @@
 {
-    "compilerOptions": {
-        "target": "ES2017",
-        "allowJs": true,
-        "skipLibCheck": true,
-        "declaration": true,
-        "esModuleInterop": true,
-        "noImplicitAny": true,
-        "baseUrl": ".",
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
-        "resolveJsonModule": true,
-        "paths": {
-            "*": [
-                "node_modules/*"
-            ]
-        },
-        "strict": true
-    }
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "baseUrl": "./",
+    "declaration": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/__tests__"
+  ],
+  "include": [
+    "src"
+  ]
 }
