@@ -1,5 +1,8 @@
-# `Parcol` Parse ANSI Colors
-Parcol is a utility for parsing all [Chalk](https://npmjs.com/package/chalk) methods in a string.
+# `Parcol` - Parse ANSI Colors
+
+[![Unit test for Parcol.js](https://github.com/ahmetcanisik/parcol/actions/workflows/test.yml/badge.svg)](https://github.com/ahmetcanisik/parcol/actions/workflows/test.yml)
+
+A simple and powerful utility for parsing [Chalk](https://npmjs.com/package/chalk) color methods in strings. Parcol makes it easy to add beautiful colors to your terminal output with a simple syntax.
 
 ## Table of Contents
 - [Syntax](#syntax)
@@ -29,18 +32,24 @@ The simplest usage example is `bl` for blue. So when you type `~bl ...~`, Parcol
 
 ## Installation
 
-You can install Parcol into your project using your package manager like [npm](https://npmjs.com), [yarn](https://yarnpkg.com), [pnpm](https://pnpm.io), etc. Below is an example using `Yarn`.
-
+Install Parcol using your preferred package manager:
 
 ```bash
+# Using npm
+npm install parcol
+
+# Using yarn
 yarn add parcol
+
+# Using pnpm
+pnpm add parcol
 ```
 
 <br>
 
 ## Usage
 
-The following code demonstrates how Parcol converts text to specific ANSI colors. It will convert the text "blue" to c.blue("blue"), so the blue text will remain blue while other texts will not be modified.
+The following code demonstrates how Parcol converts text to specific ANSI colors. It will convert the text "blue" to c.blue("blue"), so the blue text will remain blue while other text will not be modified.
 
 ```js
 import parcol from "parcol";
@@ -58,7 +67,7 @@ Below are some usage examples for Parcol.
 
 ### Using Parcol Multiple Times in a String
 
-It is possible to use Parcol multiple times in a single string expression.
+You can use Parcol multiple times in a single string expression.
 
 ```js
 import parcol from "parcol";
@@ -95,7 +104,7 @@ You can find all Parcol color keys below. The tables consist of two columns: the
 
 <br>
 
-### Bright (Hightlight) Colors
+### Bright (Highlight) Colors
 | parcol | ansi colors  |
 |--------|--------------|
 | `bcb`  | blackBright  |
