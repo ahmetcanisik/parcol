@@ -1,10 +1,12 @@
 name: Release a Parcol new version to github and npmjs.
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Unit test for Parcol.js"]
+    types:
+      - completed
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   check_version:
@@ -42,7 +44,7 @@ jobs:
 
   new_release:
     needs: [check_version]
-    if: needs.check_version.outputs.should_release == 'true'
+    if: needs.check_version.outputs.should_release == 'true' && ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,7 +55,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-          cache: "npm"
 
       - name: Install dependencies
         run: |
